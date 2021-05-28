@@ -1,24 +1,39 @@
-/*var express = require('express');
-var router = express.Router();*/
-var User=require('../respositories/users')
+var express = require('express');
+
+var router = express.Router();
+
+const usersRepo = require('../repositories/users')
+
 /* GET users listing. */
 
-/*router.get('/users', function(req, res, next) {
-  getuser= async ()=> {
-     User=await user.getAllUsers()
-    res.send(User);
-   }
-   getuser();
-  
-});*/
+router.get('/', async function(req, res, next) {
 
-module.exports = function(router){
-  router.route('/users')
-  .get(function(req,res){
-   User.getAllUsers(),then(function(data){
-     res.send(data);
-   });
+res.send(await usersRepo.getUsers( req.query.offset, req.query.limit))
 
- });
-  
-}
+});
+
+router.post('/',async function(req, res, next) {
+
+res.send( await usersRepo.addUser( req.body.user ) );
+
+});
+
+router.put('/',async function(req, res, next) {
+
+res.send( await usersRepo.updateUser( req.body.user ) );
+
+});
+
+router.get('/:id',async function(req, res, next) {
+
+res.send( await usersRepo.getUser( req.params.id) );
+
+});
+
+router.delete('/:id',async function(req, res, next) {
+
+res.send( await usersRepo.deleteUser( req.bo ) );
+
+});
+
+module.exports = router;
