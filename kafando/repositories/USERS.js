@@ -10,7 +10,7 @@ return User.findAll();
 
 // méthodes à implémenter
 
-getUsers(offset = 0, limit = 10) {
+getUsers(offset = 0, limit = 20) {
 
 return User.findAll({ offset: parseInt(offset), limit: parseInt(limit)});
 
