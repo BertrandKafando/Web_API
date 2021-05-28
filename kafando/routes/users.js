@@ -1,9 +1,24 @@
-var express = require('express');
-var router = express.Router();
-
+/*var express = require('express');
+var router = express.Router();*/
+var User=require('../respositories/users')
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
 
-module.exports = router;
+/*router.get('/users', function(req, res, next) {
+  getuser= async ()=> {
+     User=await user.getAllUsers()
+    res.send(User);
+   }
+   getuser();
+  
+});*/
+
+module.exports = function(router){
+  router.route('/users')
+  .get(function(req,res){
+   User.getAllUsers(),then(function(data){
+     res.send(data);
+   });
+
+ });
+  
+}
