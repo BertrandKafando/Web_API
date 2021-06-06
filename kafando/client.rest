@@ -1,0 +1,12 @@
+POST http://localhost:3000/users HTTP/1.1
+ 
+  {
+    "id": 140,
+        "username": "Jaobbertrand",
+        "email": "Rasheedrtet_Auer@gmail.com",
+        "password": "7PVeKbHdjhdWYoYB",
+        "role": "admin",
+        "createdAt": "2021-05-28T00:04:31.000Z",
+        "updatedAt": "2021-05-28T00:04:31.000Z"
+  },
+  

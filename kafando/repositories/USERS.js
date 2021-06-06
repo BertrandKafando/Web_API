@@ -1,81 +1,105 @@
 const { User } = require('../models')
 
-module.exports = {
+ module.exports = {
 
-getAllUsers() {
+  async getAllUsers() {
+     return await User.findAll({
+       attributes:['id', 'username', 'email', 'role']
+     });
+   },
 
-return User.findAll();
 
-},
+   // méthodes à implémenter
+   async getUsers(offset = 0, limit = 10) {
+        return await User.findAll({ offset: offset, limit: limit });
+    },
+    async getAdmins() {
+        return await User.findAll({
+            where: {
+              role: 'admin'
+            }
+          });
+    },
 
-// méthodes à implémenter
 
-getUsers(offset = 0, limit = 20) {
+    async getAuthors() { 
+        return await User.findAll({
+            where: {
+            role: 'author'
+            }
+        });
+   },
 
-return User.findAll({ offset: parseInt(offset), limit: parseInt(limit)});
 
-},
+   async getGuests(){ 
+        return await User.findAll({
+            where: {
+            role: 'guest'
+            }
+        });
+   }, 
 
-getAdmins() {
+   async getUser(id) { 
+        return await User.findOne({
+            where: {
+            id
+            },
+            attributes:['id', 'username', 'email', 'role']
+        });
+   },
 
-return User.findAll({ where:{ role:"admin" } });
+   async getUserByEmail(email) { 
+        return await User.findAll({
+            where: {
+            email: email
+            },
+            attributes:['id', 'username', 'email', 'role']
+        });
+   },
 
-},
 
-getAuthors() {
+   async addUser(user) {
+      let _user = {}
+      const created = await User.create({ username: user.username,
+          email: user.email, password: user.password,
+          role: user.role, updatedAt : user.updatedAt, createdAt : user.createdAt});
+      if (created != null){
+        _user.id = created.id
+        _user.username = created.username
+        _user.email = created.email
+        _user.role = created.role
+      } else _user.error = "can't create this user"
 
-return User.findAll({ where:{ role:"author" } });
+      return _user
+        
+   },
+   
+   async updateUser(user) {
+    const _user = await this.getUserByEmail(user.email)
+    console.log("USER: ", user)
+    if (_user == null) return {"error": "Can't update user"}
+    try{
+      const updated = await User.update(user, {
+        where: {
+          id: _user.id
+        }
+      });
+      if (updated == 1) return user;
+      else throw new Error()
+    } catch(error){
+      return {"error": "Can't update user"}
+    }
 
-},
+   },
 
-getGuests(){
 
-return User.findAll({ where:{ role:"guest" } });
-
-},
-
-getUser(id) {
-
-return User.findByPk(id);
-
-},
-
-getUserByEmail(email) {
-
-return User.findOne({ where: { email: email } });
-
-},
-
-addUser(user) {
-
-return User.create({
-
-username: user.username,
-
-email: user.email,
-
-password: user.password,
-
-role: user.role
-
-});
-
-},
-
-updateUser( user ) {
-
-const userObject = User.findByPk(user.id);
-
-return userObject.update( {}, { where: { id: user.id}});
-
-},
-
-deleteUser(id) {
-
-return user.destroy( { where: { id: id}});
-
-},
-
-// D'autres méthodes jugées utiles
-
-}
+    async deleteUser(id) { 
+    return await User.destroy({
+        where: {
+          id: id
+        },
+        attributes:['id', 'username', 'email', 'role']
+      });
+   },
+   // D'autres méthodes jugées utiles
+ }

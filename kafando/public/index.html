@@ -13,11 +13,6 @@ crossorigin="anonymous">
 </head>
 
 <body>
-
-<h1>Express</h1>
-
-<p>Welcome to Express</p>
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
 
 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -39,21 +34,57 @@ crossorigin="anonymous"></script>
 <div class="container">
 
 <table class="table caption-top">
-    <caption>List of users</caption>
+    <caption >List of users</caption>
     <thead>
         <tr>
-            <th scope="col">id</th>
             <th scope="col">Name</th>
-            <th scope="col">Genre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
         </tr>
     </thead>
-    <tbody id="user">
+    <tbody id="user">  
 
     </tbody >
 
 </table>
 
-<div>
+ <h1 style="text-align: center;">Add user </h1>
+
+   
+    <form>
+      <div class="mb-3">
+        <label for="username" class="form-label">Nom</label>
+       <input type="text" class="form-control" id="username" >
+
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password">
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <select id="role" name="role" aria-placeholder="Votre rôle" class="form-select" aria-label="Default select example">
+        <option selected>Choisissez le rôle</option>
+        <option value="admin">Admin</option>
+        <option value="guest">Guest</option>
+        <option value="author">Author</option>
+      </select>
+
+      <button type="submit" onclick="createUser()" class="btn btn-primary">Submit</button>
+
+  </form>
+
+
+
+</div>
+
+
+
 
 <script src ='/javascripts/javascript.js'></script>
 
@@ -65,7 +96,7 @@ getusers((user)=>{
 
 user.forEach(u=>{
 
-html.innerHTML+="<tr><td>"+ u.username +"</td><td>"+ u.password +"</td><td>"+ u.email +"</td></tr>"
+html.innerHTML+="<tr><td>"+ u.username +"</td><td>"+ u.email+"</td><td>"+ u.role +"</td></tr>"
 
 })
 
@@ -74,5 +105,8 @@ html.innerHTML+="<tr><td>"+ u.username +"</td><td>"+ u.password +"</td><td>"+ u.
 </script>
 
 </body>
-
+</body>
+<div>
+    <span class="footer">&copy; Copyright Bertrand Kafando | Powered by :</span>
+</div>
 </html>
