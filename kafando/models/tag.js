@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here n-n
-      Tag.belongsToMany(models.Article,{through: 'ArticleTags'})
+      Tag.belongsToMany(models.Article, {through: 'ArticleTags'})
     }
   };
   Tag.init({

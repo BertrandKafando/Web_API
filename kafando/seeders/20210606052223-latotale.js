@@ -30,31 +30,33 @@ const Article = [...Array(200)].map((Article) => (
   }
 ))
 
-const Comment = [...Array(2000)].map((Comment) => (
+const Comment = [...Array(200)].map((Comment) => (
   {
     content:faker.lorem.paragraph(),
-    ArticleId:faker.helpers.randomize(_.range(401,600,1)),
+    ArticleId:faker.helpers.randomize(_.range(1,200,1)),
     createdAt: new Date(),
     updatedAt: new Date()
   }
 ))
 
+
+const ArticleTags = [...Array(200)].map((ArticleTags) => (
+  {
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    ArticleId:faker.helpers.randomize(_.range(1,200,1)),
+    Tagid:faker.helpers.randomize(_.range(1,10,1)),
+  }
+))
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    //return queryInterface.bulkInsert('Tags', tags, {})
-    //return queryInterface.bulkInsert('Users', users, {})
-    //return queryInterface.bulkInsert('Articles', Article, {})
-    //return queryInterface.bulkInsert('Comments', Comment, {});
-    for(var i=401;i<=600;i++){
-      for(var j=1;j<=10;j++){
-        await queryInterface.bulkInsert('ArticleTags', [{
-          ArticleId:  i,
-          Tagid:  j ,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }], {});
-      }
-    }
+   
+    //await queryInterface.bulkInsert('Users',users);
+  //await queryInterface.bulkInsert('Tags',tags);
+  //  await queryInterface.bulkInsert('articles',Article);
+   // await queryInterface.bulkInsert('comments',Comment);
+  await queryInterface.bulkInsert('ArticleTags',ArticleTags);   
   },
 
   down: async (queryInterface, Sequelize) => {
