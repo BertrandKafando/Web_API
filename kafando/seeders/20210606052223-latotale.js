@@ -40,15 +40,6 @@ const Comment = [...Array(200)].map((Comment) => (
 ))
 
 
-const ArticleTags = [...Array(200)].map((ArticleTags) => (
-  {
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    ArticleId:faker.helpers.randomize(_.range(1,200,1)),
-    Tagid:faker.helpers.randomize(_.range(1,10,1)),
-  }
-))
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
    
@@ -56,7 +47,16 @@ module.exports = {
   //await queryInterface.bulkInsert('Tags',tags);
   //  await queryInterface.bulkInsert('articles',Article);
    // await queryInterface.bulkInsert('comments',Comment);
-  await queryInterface.bulkInsert('ArticleTags',ArticleTags);   
+   for(var i=1;i<=200;i++){
+    for(var j=1;j<=10;j++){
+      await queryInterface.bulkInsert('ArticleTags', [{
+        ArticleId:  i,
+        Tagid:  j ,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }], {});
+    }
+  }  
   },
 
   down: async (queryInterface, Sequelize) => {
