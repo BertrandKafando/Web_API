@@ -1,5 +1,6 @@
 //const users = require("../../repositories/users")
 const URL = 'http://localhost:4000/users/';
+
 async function getusers(cb){
   let xhr=new XMLHttpRequest()
   xhr.open('GET','/users')
@@ -18,23 +19,23 @@ async function getusers(cb){
 
 
   async function createUser() {
-    var _data = {}
-    _data.username = document.querySelector("#username").value
-    _data.email = document.querySelector("#email").value
-    _data.password = document.querySelector("#password").value
-    _data.role = document.querySelector("#role").value
+    var data = {}
+    data.username = document.querySelector("#username").value
+    data.email = document.querySelector("#email").value
+    data.password = document.querySelector("#password").value
+    data.role = document.querySelector("#role").value
 
     fetch(URL, {
       method: "POST",
-      body: JSON.stringify(_data),
+      body: JSON.stringify(data),
       headers: {"Content-type": "application/json; charset=UTF-8"}
     })
     .then(response => response.json()) 
-    //.then(json => console.log(json))
-    //.catch(err => console.log(err));
-    //document.getElementById('validate').innerHTML="<div class='alert alert-success'>User added successfully</div>"
+    .then(json => console.log(json))
+    .catch(err => console.log(err));
+    document.getElementById('validate').innerHTML="<div class='alert alert-success'>User added successfully</div>"
 }
-
+/*
 async function updateUser(){
   const data= {}
   data.username = document.querySelector("#usernameUP").value
@@ -46,4 +47,15 @@ async function updateUser(){
       headers: {"Content-type": "application/json; charset=UTF-8"}
     })
     .catch(err => console.log(err));
+}
+
+*/
+async function deleteuser(id)
+{
+  await fetch('http://localhost:4000/users/id', {
+    method: "DELETE",
+  })
+  .then(response => response.json()) 
+  .then(json => console.log(json))
+  .catch(err => console.log(err))
 }

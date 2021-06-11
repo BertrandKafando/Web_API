@@ -39,19 +39,19 @@ const { User } = require('../models')
         });
    }, 
 
-   async getUser(id) { 
+   async getUser(reqid) { 
         return await User.findOne({
             where: {
-            id
+            id:reqid
             },
             attributes:['id', 'username', 'email', 'role']
         });
    },
 
-   async getUserByEmail(email) { 
+   async getUserByEmail(reqemail) { 
         return await User.findAll({
             where: {
-            email: email
+            email: reqemail
             },
             attributes:['id', 'username', 'email', 'role']
         });
@@ -75,9 +75,9 @@ const { User } = require('../models')
    },
    
    async updateUser(user) {
-    const _user = await this.getUserByEmail(user.email)
+    const _user = await this.getUser(user.id)
     console.log("USER: ", user)
-    if (_user == null) return {"error": "Can't update user"}
+    if (_user == null) return {"error": "Can't 1 update user"}
     try{
       const updated = await User.update(user, {
         where: {
@@ -93,13 +93,13 @@ const { User } = require('../models')
    },
 
 
-    async deleteUser(id) { 
-    return await User.destroy({
+    async DeleteUser(id) { 
+      return await User.destroy({
         where: {
           id: id
-        },
-        attributes:['id', 'username', 'email', 'role']
+        }
       });
+     
    },
    // D'autres méthodes jugées utiles
  }

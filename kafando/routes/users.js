@@ -40,6 +40,7 @@ router.post('/', async function(req, res){
 
 router.put('/', async function(req, res){
 	let user= {}
+	user.id=req.body.id
 	user.username=req.body.username
 	user.email=req.body.email
 	user.role=req.body.role
@@ -49,10 +50,10 @@ router.put('/', async function(req, res){
 
 
 
-router.delete('/:id',async function(req, res, next) {
-
-res.send( await User.deleteUser( req.bo ) );
-
+router.delete('/:id',async function(req, res) {
+	let user= req.params.id
+    await User.DeleteUser(user);
+   res.redirect("/")
 });
 
 module.exports = router;
