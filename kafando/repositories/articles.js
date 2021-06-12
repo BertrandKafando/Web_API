@@ -70,14 +70,6 @@ async getartsuser(id)
   })
 },
 
-async countarticles()
-{
-  return await Article.count({ where: { published: true} })
-  .then(c => {
-    console.log("There are " + c + " projects!")
-  })
-}
-
 
    // méthodes à implémente
  }

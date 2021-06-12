@@ -59,3 +59,21 @@ async function deleteuser(id)
   .then(json => console.log(json))
   .catch(err => console.log(err))
 }
+
+function delete_user(id){
+
+  if( !confirm("Voulez vous vraiment supprimer cet utilisateur ?") ) return;
+  
+  $.ajax({
+  url: 'http://localhost:4000/users/'+id,
+  type: 'DELETE',
+  success: function( reponse){
+  console.log(reponse)
+  fetch_users();
+  },
+  error : function (err){
+  console.log(err);
+  }
+  })
+  }
+  fetch_users();

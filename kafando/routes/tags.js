@@ -28,8 +28,8 @@ router.put('/',async function(req,res){
     tag.updatedAt = moment().format('YYYY/MM/DD h:mm:ss')
 res.send( await Tags.tagsupdate(tag))
 });
-router.delete('/', async function(req, res, next){
-    let tag= req.body.id
+router.delete('/:id', async function(req, res, next){
+    let tag= req.params.id
     await Tags.deltag(tag);
     res.redirect("/");
   })

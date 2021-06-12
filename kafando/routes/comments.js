@@ -30,7 +30,7 @@ router.post('/', async function(req, res) {
     res.send(await Comments.updateComments(com));
   });
   
-  router.delete('/', async function(req, res){
+  router.delete('/:id', async function(req, res){
     let com= req.params.id
     await Comments.delComments(com);
    res.redirect("/")

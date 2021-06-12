@@ -4,7 +4,7 @@ var moment= require('moment')
 var router = express.Router();
 
 const articles= require('../repositories/articles');
-const comments = require('../repositories/comments');
+const Comments = require('../repositories/comments');
 router.get('/', async function(req, res){
 	return res.send(await articles.getAllarticles())
 }),
@@ -46,15 +46,6 @@ router.delete('/:id',async function(req,res){
 router.get('/:id/user',async function(req,res){
 	res.send(await articles.getartsuser(req.params.id))
 }),
-//count
-router.get('/ctarticles', async function(req, res) {
-	res.send(await articles.countarticles());
-  });
-  //count
-  router.get('/ctComments', async function(req, res) {
-	res.send(await comments.countCom());
-  });
-  
   router.get('/:id/comments', async function(req, res) {
 	res.send(await Comments.getArticleComments(req.params.id)); // comments
   });
