@@ -1,7 +1,7 @@
 'use strict';
 var faker = require('faker');
 var _ = require('underscore');
-const users = [...Array(20)].map((user) => (
+/*const users = [...Array(20)].map((user) => (
   {
     username: faker.internet.userName(),
     email: faker.internet.email(),
@@ -57,7 +57,7 @@ module.exports = {
       }], {});
     }
   }  
-  },
+  },*/
 
   down: async (queryInterface, Sequelize) => {
     /**
@@ -66,5 +66,5 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-  }
-};
+  //}
+}

@@ -60,8 +60,10 @@ const { User } = require('../models')
 
    async addUser(user) {
       let _user = {}
-      const created = await User.create({ username: user.username,
-          email: user.email, password: user.password,
+      const created = await User.create({ 
+           username: user.username,
+          email: user.email,
+         password: user.password,
           role: user.role, updatedAt : user.updatedAt, createdAt : user.createdAt});
       if (created != null){
         _user.id = created.id
@@ -81,7 +83,7 @@ const { User } = require('../models')
     try{
       const updated = await User.update(user, {
         where: {
-          id: _user.id
+          id: user.id
         }
       });
       if (updated == 1) return user;

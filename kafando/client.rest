@@ -1,35 +1,52 @@
 
-POST http://localhost:4000/users HTTP/1.1
+POST http://localhost:4000/articles HTTP/1.1
+Content-type: application/json 
+
+   {
+        "title": " bertrInternal Factors Planner",
+        "content": "Vrjcoluptatem natus accusamus qui dolores. Nam inventore natus nesciunt quia qui doloribus. Maiores corrupti soluta autem.",
+        "published": true,
+        "UserId": 30
+   }
+###
+GET http://localhost:4000/articles/204 HTTP/1.1
+###
+PUT  http://localhost:4000/comments HTTP/1.1
+Content-type: application/json 
+
+   {
+        "id": 205,
+        "content": "BErtrand. Magni assumenda illum. Quia ab voluptatem sunt inventore mollitia nemo possimus deserunt.",
+        "ArticleId": 20
+   }
+###
+DELETE  http://localhost:4000/comments/205  HTTP/1.1
+###
+GET http://localhost:4000/tags HTTP/1.1
+###
+PUT http://localhost:4000/tags HTTP/1.1
+Content-type: application/json 
+
+   {
+     "id": 13,
+     "name": "Bertrnad kafando" 
+   }
+###
+DELETE http://localhost:4000/tags/13 HTTP/1.1
+###
+GET http://localhost:4000/articles HTTP/1.1
+###
+PUT  http://localhost:4000/articles HTTP/1.1
 Content-type: application/json 
 
   {
-        "username": "Jarretcecn2jj",
-        "email": "Dasijjfda59@gmail.com",
-        "role": "author"
+    "id":206,
+    "title": "Bertrand test put",
+    "content": " pqs en  lation cette fois merci",
+    "published": true,
+    "UserId": 3
   }
 ###
-Get http://localhost:4000/articles/11/user HTTP/1.1
+GET http://localhost:4000/articles/3/user HTTP/1.1
 ###
-
-Get http://localhost:4000/articles/2/comments HTTP/1.1
-
-###
-POST http://localhost:4000/comments HTTP/1.1
-Content-type: application/json 
-
-  {
-        "id": 204,
-        "content": "Bonjour enset .je suis Bertrand",
-        "ArticleId": 1
-  }
-###
-PUT http://localhost:4000/Tags HTTP/1.1
-Content-type: application/json 
-
-  {
-    "id": 11,
-   "name": "Bertrand kafando"
-  }
-
-###
-DELETE http://localhost:4000/comments/204 HTTP/1.1
+GET http://localhost:4000/articles/24/comments HTTP/1.1

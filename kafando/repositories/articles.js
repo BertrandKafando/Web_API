@@ -20,7 +20,7 @@ async addArticle(article)
   title: article.title,
   content: article.content,
   published:article.published,
-  UserId: article.userid,
+  UserId:article.UserId,
   updatedAt : article.updatedAt,
   createdAt : article.createdAt
 });
@@ -29,7 +29,7 @@ if (created != null){
   _article.content = created.content
   _article.published= created.published
   _article.UserId = created.UserId
-} else _user.error = "can't create this user"
+} else _user.error = "can't create this articles"
 
 return _article;
 },
@@ -42,7 +42,7 @@ if(_article==null)return {"error": "Can't 1 update user"}
 try{
    const updated= await Article.update(article,{
      where:{
-       id:_article.id
+       id:article.id
      }
    });
    if (updated == 1) return article;
@@ -63,6 +63,7 @@ async delarticle(id)
 //affiche tous les articles d'un utilisateur
 async getartsuser(id) 
 {
+  console.log(id);
   return await Article.findAll({
     where: {
         UserId:id 

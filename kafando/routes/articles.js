@@ -38,14 +38,16 @@ router.put('/',async function(req,res){
 })
 // suppression
 router.delete('/:id',async function(req,res){
-	let article= req.body.id
+	let article= req.params.id
     await articles.delarticle(article);
     res.redirect("/");
 }),
-
+//tousm articlres d'Un user
 router.get('/:id/user',async function(req,res){
+	console.log(req.params.id)
 	res.send(await articles.getartsuser(req.params.id))
 }),
+
   router.get('/:id/comments', async function(req, res) {
 	res.send(await Comments.getArticleComments(req.params.id)); // comments
   });

@@ -1,5 +1,5 @@
 //const users = require("../../repositories/users")
-const URL = 'http://localhost:4000/users/';
+const URL = 'http://localhost:4000/users';
 
 async function getusers(cb){
   let xhr=new XMLHttpRequest()
@@ -34,30 +34,6 @@ async function getusers(cb){
     .then(json => console.log(json))
     .catch(err => console.log(err));
     document.getElementById('validate').innerHTML="<div class='alert alert-success'>User added successfully</div>"
-}
-/*
-async function updateUser(){
-  const data= {}
-  data.username = document.querySelector("#usernameUP").value
-  data.email = document.querySelector("#emailUP").value
-  data.role = document.querySelector("#roleUP").value
-  await fetch(URL, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {"Content-type": "application/json; charset=UTF-8"}
-    })
-    .catch(err => console.log(err));
-}
-
-*/
-async function deleteuser(id)
-{
-  await fetch('http://localhost:4000/users/id', {
-    method: "DELETE",
-  })
-  .then(response => response.json()) 
-  .then(json => console.log(json))
-  .catch(err => console.log(err))
 }
 
 function delete_user(id){

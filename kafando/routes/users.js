@@ -7,7 +7,7 @@ const User= require('../repositories/users')
 
 /* GET home page. */
 router.get('/', async function(req, res){
-	return res.send(await User.getAllUsers())
+	return res.send(await User.getUsers())
 })
 
 router.get('/author', async function(req, res){

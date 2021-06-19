@@ -15,7 +15,7 @@ module.exports = {
      });
 
    }
-     //await queryInterface.bulkInsert('Users',data,{});
+     await queryInterface.bulkInsert('Users',data,{});
   },
 
 
